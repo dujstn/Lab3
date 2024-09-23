@@ -40,7 +40,7 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
 
             for (String line : lines) {
-                String[] parts = line.split(" ");
+                String[] parts = line.split("\t");
                 codeToName.put(parts[0], parts[2]);
                 nameToCode.put(parts[2], parts[0]);
 
