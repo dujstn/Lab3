@@ -6,18 +6,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
 
-    private final HashMap<String, String> codeToLanguage = new HashMap<>();
-    private final HashMap<String, String> languageToCode = new HashMap<>();
+    private final Map<String, String> codeToLanguage = new HashMap<>();
+    private final Map<String, String> languageToCode = new HashMap<>();
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
      * in the resources folder.
      */
+
     public LanguageCodeConverter() {
         this("language-codes.txt");
     }
@@ -25,7 +27,7 @@ public class LanguageCodeConverter {
     /**
      * Overloaded constructor which allows us to specify the filename to load the language code data from.
      * @param filename the name of the file in the resources folder to load the data from
-     * @throws RuntimeException if the resource file can't be loaded properly
+     * @throws IllegalArgumentException if the resource file can't be loaded properly
      */
     public LanguageCodeConverter(String filename) {
 
@@ -33,11 +35,9 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-
-
             for (String line : lines.subList(1, lines.size())) {
-                line = line.trim();
-                String[] pair = line.split("\t");
+                String lineTrim = line.trim();
+                String[] pair = lineTrim.split("\t");
                 codeToLanguage.put(pair[1], pair[0]);
                 languageToCode.put(pair[0].toLowerCase(), pair[1]);
 

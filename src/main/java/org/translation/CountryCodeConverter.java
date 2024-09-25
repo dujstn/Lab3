@@ -39,14 +39,15 @@ public class CountryCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            for (String line : lines) {
+            for (String line : lines.subList(1, lines.size())) {
                 String[] parts = line.split("\t");
-                codeToName.put(parts[1], parts[0]);
-                nameToCode.put(parts[0].toLowerCase(), parts[1]);
+                codeToName.put(parts[2], parts[0]);
+                nameToCode.put(parts[0].toLowerCase(), parts[2]);
 
             }
 
-        } catch (IOException | URISyntaxException ex) {
+        }
+        catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
         }
 

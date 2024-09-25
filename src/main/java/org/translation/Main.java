@@ -74,7 +74,6 @@ public class Main {
             countryNames.add(COUNTRY_CODE_CONVERTER.fromCountryCode(countryCode));
         }
 
-
         countryNames.sort(String::compareTo);
 
         for (String countryName : countryNames) {

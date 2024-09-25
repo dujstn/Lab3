@@ -19,6 +19,7 @@ import org.json.JSONObject;
 public class JSONTranslator implements Translator {
 
     // TODO Task: pick appropriate instance variables for this class
+    private static final String ALPHA3 = "alpha3";
     private final Map<String, JSONObject> convertMap;
     private final List<String> languageCodes;
     /**
@@ -51,15 +52,16 @@ public class JSONTranslator implements Translator {
             if (!jsonArray.isEmpty()) {
                 object = jsonArray.getJSONObject(0);
                 for (String key : object.keySet()) {
-                    if (!("id".equals(key) || "alpha2".equals(key) || "alpha3".equals(key))) {
+                    if (!("id".equals(key) || "alpha2".equals(key) || ALPHA3.equals(key))) {
                         languageCodes.add(key);
                     }
                 }
+                convertMap.put(object.getString(ALPHA3), object);
             }
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 object = jsonArray.getJSONObject(i);
-                convertMap.put(object.getString("alpha2"), object);
+                convertMap.put(object.getString(ALPHA3), object);
             }
         }
         catch (IOException | URISyntaxException ex) {
