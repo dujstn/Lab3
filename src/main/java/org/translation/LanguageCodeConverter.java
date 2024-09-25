@@ -35,11 +35,11 @@ public class LanguageCodeConverter {
 
 
 
-            for (String line : lines) {
+            for (String line : lines.subList(1, lines.size())) {
                 line = line.trim();
                 String[] pair = line.split("\t");
-                codeToLanguage.put(pair[0], pair[1]);
-                languageToCode.put(pair[1], pair[0]);
+                codeToLanguage.put(pair[1], pair[0]);
+                languageToCode.put(pair[0].toLowerCase(), pair[1]);
 
             }
         }
@@ -55,7 +55,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        return codeToLanguage.get(code);
+        return codeToLanguage.get(code.toLowerCase());
     }
 
     /**
@@ -64,7 +64,7 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        return languageToCode.get(language);
+        return languageToCode.get(language.toLowerCase());
     }
 
     /**

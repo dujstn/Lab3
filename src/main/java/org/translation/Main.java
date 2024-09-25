@@ -25,7 +25,7 @@ public class Main {
      * @param args not used by the program
      */
     public static void main(String[] args) {
-        Translator translator = new JSONTranslator(null);
+        Translator translator = new JSONTranslator();
         // Translator translator = new InLabByHandTranslator();
 
         runProgram(translator);
@@ -74,7 +74,8 @@ public class Main {
             countryNames.add(COUNTRY_CODE_CONVERTER.fromCountryCode(countryCode));
         }
 
-        Collections.sort(countryNames);
+
+        countryNames.sort(String::compareTo);
 
         for (String countryName : countryNames) {
             System.out.println(countryName);

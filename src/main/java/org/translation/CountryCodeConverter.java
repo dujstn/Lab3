@@ -41,8 +41,8 @@ public class CountryCodeConverter {
 
             for (String line : lines) {
                 String[] parts = line.split("\t");
-                codeToName.put(parts[0], parts[2]);
-                nameToCode.put(parts[2], parts[0]);
+                codeToName.put(parts[1], parts[0]);
+                nameToCode.put(parts[0].toLowerCase(), parts[1]);
 
             }
 
@@ -59,7 +59,7 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        return codeToName.get(code);
+        return codeToName.get(code.toUpperCase());
     }
 
     /**
@@ -69,7 +69,7 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
-        return nameToCode.get(country);
+        return nameToCode.get(country.toLowerCase());
     }
 
     /**
